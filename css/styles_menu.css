@@ -1,0 +1,45 @@
+/* Estilos adicionales para el menú */
+.navbar-nav.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0; /* Ajusta este valor según sea necesario para el espacio superior e inferior */
+    width: 250px; /* Ancho del menú lateral */
+    background-color: #F5C313!important; /* Color de fondo del menú */
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es demasiado largo */
+  }
+  
+  .navbar-nav.sidebar .nav-link {
+    color: #000000; /* Color de texto de los enlaces del menú */
+    font-size: 16px;
+    padding: 10px 15px;
+    transition: 0.3s;
+  }
+  
+  .navbar-nav.sidebar .nav-link:hover {
+    background-color: #cecece; /* Color de fondo al pasar el mouse */
+    color: #000000;
+  }
+  
+  .navbar-nav.sidebar .nav-link i {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .navbar-nav.sidebar .nav-link.active {
+    color: #000000; /* Color de texto del enlace activo */
+    background-color: #ffffff; /* Color de fondo del enlace activo */
+  }
+  
+  .section-title {
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+  
+  hr.my-1 {
+    border-top: 1px solid #ddd;
+    margin: 0.5rem 0
+}

@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #E7E170; /* Color de fondo del encabezado */
+    color: black; /* Color del texto */
+    padding: 10px;
+    position: fixed; /* Fija el encabezado en la parte superior de la ventana */
+    top: 0; /* Alinea el encabezado en la parte superior */
+    width: 100%; /* Establece el ancho del encabezado al 100% del ancho de la ventana */
+    height: 50px;
+    z-index: 1000; /* Asegura que el encabezado esté en la capa superior */
+}
+
+
+
+.header img {
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+.header span {
+    font-size: 20px; /* Tamaño del texto */
+    font-weight: bold; /* Peso de la fuente */
+}

@@ -1,0 +1,55 @@
+/* Seguimiento */
+
+
+
+
+.bg-light-purple {
+    background-color: #d9a6e0;
+  }
+
+  .bg-light-lime {
+    background-color: #95DD5A;
+  }
+
+
+  .bg-light-yellow {
+    background-color: #E7D42D;
+  }
+
+
+  .bg-light-blue {
+    background-color: #5AB2FF;
+  }
+  
+  .section h4 {
+    margin-bottom: 20px;
+  }
+  
+  .result, .global-result {
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+    
+  }
+
+  
+  
+  .result div, .global-result div {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .global-result {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+
+
+
+  /* Fin Seguimiento */
+
+
+
+
+
