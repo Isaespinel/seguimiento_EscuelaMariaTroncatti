@@ -58,7 +58,6 @@ else {
     $id_alumno = htmlentities($_POST ['id_alumno']);
 
 
-
     //insertar es el nombre del boton guardar que esta en el archivo alumnos.view.php
     if (isset($_POST['insertar'])){
 

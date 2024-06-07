@@ -4,7 +4,7 @@ if($_SESSION['rol'] =='Administrador') {
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         try {
             $id_materia = $_GET['id'];
-            $materias = $conn->prepare("delete from materias where id = " . $id_materia);
+            $materias = $conn->prepare("update materias set estado=0 where id = " . $id_materia);
             $materias->execute();
             header('location:materias.view.php');
         } catch (PDOException $e) {

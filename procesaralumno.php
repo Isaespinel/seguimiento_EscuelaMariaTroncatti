@@ -8,6 +8,7 @@ else {
     //Recuperamos los valores que vamos a llenar en la BD
     $nombres = htmlentities($_POST ['nombres']);
     $apellidos = htmlentities($_POST ['apellidos']);
+    $cedula = htmlentities($_POST ['cedula']);
     $genero = htmlentities($_POST['genero']);
     $numlista = htmlentities($_POST['numlista']);
     $idgrado = htmlentities($_POST['grado']);
@@ -16,7 +17,7 @@ else {
     //insertar es el nombre del boton guardar que esta en el archivo alumnos.view.php
     if (isset($_POST['insertar'])){
 
-        $result = $conn->query("insert into alumnos (nombres, apellidos, genero, id_grado, id_seccion) values ('$nombres', '$apellidos', '$genero', '$idgrado', 1)");
+        $result = $conn->query("insert into alumnos (nombres, apellidos, genero, num_cedula, estado, id_grado, id_seccion) values ('$nombres', '$apellidos', '$genero', '$cedula', 1, '$idgrado', 1)");
         if (isset($result)) {
             header('location:listadoalumnos.view.php');
         } else {
@@ -27,7 +28,7 @@ else {
     }else if (isset($_POST['modificar'])) {
         //capturamos el id alumnos a modificar
             $id_alumno = htmlentities($_POST['id']);
-            $result = $conn->query("update alumnos set nombres = '$nombres', apellidos = '$apellidos', genero = '$genero',id_grado = '$idgrado' where id = " . $id_alumno);
+            $result = $conn->query("update alumnos set nombres = '$nombres', apellidos = '$apellidos', genero = '$genero', num_cedula = '$cedula', estado=1 ,id_grado = '$idgrado'  where id = " . $id_alumno);
             if (isset($result)) {
                 header('location:listadoalumnos.view.php');
             } else {

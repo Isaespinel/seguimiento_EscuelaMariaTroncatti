@@ -12,7 +12,7 @@ $materias = $materias->fetchAll();
 
 
 //consulta de grados
-$grados = $conn->prepare("select * from grados");
+$grados = $conn->prepare("select * from grados where estado=1");
 $grados->execute();
 $grados = $grados->fetchAll();
 
@@ -104,22 +104,10 @@ $grados = $grados->fetchAll();
 
 
                             //Funcion para que traiga los valores de los estudiantes y de las notas
-                            $consulta = $conn->prepare("SELECT alumnos.id AS id_alumno, alumnos.Nombres, alumnos.Apellidos, materias.id AS id_materia, materias.nombre AS nombre_materia,notas.Id AS notaid, notas.Parcial1_q1, notas.Parcial2_q1, notas.Examen_q1,notas.Final_q1, notas.Parcial1_q2, notas.Parcial2_q2,notas.Examen_q2, notas.Final_q2, notas.Promedio_total FROM alumnos CROSS JOIN materias LEFT JOIN notas ON alumnos.id = notas.id_alumno AND materias.id = notas.id_materia WHERE alumnos.id_grado = $id_grado and materias.id_grado = $id_grado ORDER BY materias.nombre, alumnos.Nombres, alumnos.Apellidos");
+                            $consulta = $conn->prepare("SELECT alumnos.id AS id_alumno, alumnos.Nombres, alumnos.Apellidos, materias.id AS id_materia, materias.nombre AS nombre_materia, notas.Id AS notaid, notas.Parcial1_t1, notas.Parcial2_t1, notas.Examen_t1, notas.Proyecto_t1,notas.Final_t1, notas.Parcial1_t2, notas.Parcial2_t2, notas.Examen_t2, notas.Proyecto_t2,notas.Final_t2, notas.Parcial1_t3, notas.Parcial2_t3, notas.Examen_t3, notas.Proyecto_t3, notas.Final_t3, notas.Promedio_total FROM alumnos CROSS JOIN materias LEFT JOIN notas ON alumnos.id = notas.id_alumno AND materias.id = notas.id_materia WHERE alumnos.id_grado = $id_grado and materias.id_grado = $id_grado and materias.estado=1 and alumnos.estado=1 ORDER BY materias.nombre, alumnos.Nombres, alumnos.Apellidos");
                             $consulta->execute();
                             $datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
-
-
-                            $alumnos = $conn->prepare("SELECT alumnos.id, alumnos.Nombres, alumnos.Apellidos, notas.Id, notas.Parcial1_t1, notas.Parcial2_t1, notas.Examen_t1, notas.Proyecto_t1, notas.Final_T1, notas.Parcial1_t2, notas.Parcial2_t2, notas.Examen_t2, notas.Proyecto_t2, notas.Final_t2, notas.Parcial1_t3, notas.Parcial2_t3, notas.Examen_t3, notas.Proyecto_t3, notas.Final_t3, notas.Promedio_total FROM alumnos LEFT JOIN notas ON alumnos.id = notas.id_alumno WHERE alumnos.id_grado = $id_grado group by alumnos.id");
-                            $alumnos->execute();
-                            $alumnos = $alumnos->fetchAll();
-
-
-
-                            $materiasq = $conn->prepare("SELECT * FROM materias WHERE id_grado = $id_grado order by nombre desc");
-                            $materiasq->execute();
-                            $materias = $materiasq->fetchAll();
-                            $num_materias = $materiasq->rowCount();
 
                         ?>
                             <br>
@@ -157,7 +145,7 @@ $grados = $grados->fetchAll();
                                        
                                         <th>Promedio Total</th>
                                         <th>Materia</th>
-                                        <!-- <th>Eliminar</th> -->
+                                       
                                     </tr>
 
                                     <?php foreach ($datos as $dato) : ?>
@@ -167,41 +155,80 @@ $grados = $grados->fetchAll();
                                         <tr>
                                             <td align="center"><?php echo $dato['Nombres'] ?></td>
                                             <td><?php echo $dato['Apellidos'] ?></td>
-                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial1_q1'])) {
-                                                                                            echo $dato['Parcial1_q1'];
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial1_t1'])) {
+                                                                                            echo $dato['Parcial1_t1'];
                                                                                         } else {
                                                                                             echo 0.0;
-                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial1q1]" class="txtnota"></td>
-                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial2_q1'])) {
-                                                                                            echo $dato['Parcial2_q1'];
+                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial1t1]" class="txtnota"></td>
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial2_t1'])) {
+                                                                                            echo $dato['Parcial2_t1'];
                                                                                         } else {
                                                                                             echo 0.0;
-                                                                                        }  ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial2q1]" class="txtnota"></td>
-                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Examen_q1'])) {
-                                                                                            echo $dato['Examen_q1'];
+                                                                                        }  ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial2t1]" class="txtnota"></td>
+                                           
+                                            
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Examen_t1'])) {
+                                                                                            echo $dato['Examen_t1'];
                                                                                         } else {
                                                                                             echo 0.0;
-                                                                                        }  ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][examenq1]" class="txtnota"></td>
-                                            <td><?php echo $dato['Final_q1'] ?></td>
-                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial1_q2'])) {
-                                                                                            echo $dato['Parcial1_q2'];
+                                                                                        }  ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][exament1]" class="txtnota"></td>
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Proyecto_t1'])) {
+                                                                                            echo $dato['Proyecto_t1'];
                                                                                         } else {
                                                                                             echo 0.0;
-                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial1q2]" class="txtnota"></td>
-                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial2_q2'])) {
-                                                                                            echo $dato['Parcial2_q2'];
+                                                                                        }  ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][proyectot1]" class="txtnota"></td>
+
+                                            <td><?php echo $dato['Final_t1'] ?></td>
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial1_t2'])) {
+                                                                                            echo $dato['Parcial1_t2'];
                                                                                         } else {
                                                                                             echo 0.0;
-                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial2q2]" class="txtnota"></td>
-                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Examen_q2'])) {
-                                                                                            echo $dato['Examen_q2'];
+                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial1t2]" class="txtnota"></td>
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial2_t2'])) {
+                                                                                            echo $dato['Parcial2_t2'];
                                                                                         } else {
                                                                                             echo 0.0;
-                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][examenq2]" class="txtnota"></td>
-                                            <td><?php echo $dato['Final_q2'] ?></td>
+                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial2t2]" class="txtnota"></td>
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Examen_t2'])) {
+                                                                                            echo $dato['Examen_t2'];
+                                                                                        } else {
+                                                                                            echo 0.0;
+                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][exament2]" class="txtnota"></td>
+                                             <td><input type="text" maxlength="4" value="<?php if (isset($dato['Proyecto_t2'])) {
+                                                                                            echo $dato['Proyecto_t2'];
+                                                                                        } else {
+                                                                                            echo 0.0;
+                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][proyectot2]" class="txtnota"></td>
+                                            <td><?php echo $dato['Final_t2'] ?></td>
+
+                                            <!-- Parcial 3 -->
+
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial1_t3'])) {
+                                                                                            echo $dato['Parcial1_t3'];
+                                                                                        } else {
+                                                                                            echo 0.0;
+                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial1t3]" class="txtnota"></td>
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial2_t3'])) {
+                                                                                            echo $dato['Parcial2_t3'];
+                                                                                        } else {
+                                                                                            echo 0.0;
+                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][parcial2t3]" class="txtnota"></td>
+                                            <td><input type="text" maxlength="4" value="<?php if (isset($dato['Examen_t3'])) {
+                                                                                            echo $dato['Examen_t3'];
+                                                                                        } else {
+                                                                                            echo 0.0;
+                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][exament3]" class="txtnota"></td>
+                                             <td><input type="text" maxlength="4" value="<?php if (isset($dato['Proyecto_t3'])) {
+                                                                                            echo $dato['Proyecto_t3'];
+                                                                                        } else {
+                                                                                            echo 0.0;
+                                                                                        } ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][materias][<?php echo $dato['id_materia'] ?>][proyectot3]" class="txtnota"></td>
+                                            <td><?php echo $dato['Final_t3'] ?></td>
+
+
                                             <td><?php echo $dato['Promedio_total'] ?></td>
                                             <td><?php echo $dato['nombre_materia'] ?></td>
-                                            <!--  <td><a href="registrodelete.php?id=<?php echo $dato['notaid'] ?>&grado=<?php echo $id_grado ?>">Eliminar</a></td> -->
+                                            
                                         </tr>
                                     <?php endforeach; ?>
 

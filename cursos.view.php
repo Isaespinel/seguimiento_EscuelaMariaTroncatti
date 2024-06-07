@@ -4,7 +4,7 @@ require 'functions.php';
 $permisos = ['Administrador', 'Profesor'];
 permisos($permisos);
 //consulta los cursos
-$cursos = $conn->prepare("select * from grados order by id desc");
+$cursos = $conn->prepare("select * from grados where estado=1 order by id desc");
 $cursos->execute();
 $cursos = $cursos->fetchAll();
 

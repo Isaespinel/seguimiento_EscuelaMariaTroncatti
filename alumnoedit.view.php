@@ -52,6 +52,8 @@ if(isset($_GET['id'])) {
                 <br>
                 <label>Apellidos</label><br>
                 <input type="text" required name="apellidos" value="<?php echo $alumno['apellidos']?>" maxlength="45">
+                <label>Cedula</label><br>
+                <input type="text" required name="cedula" value="<?php echo $alumno['num_cedula']?>" maxlength="10">
                 <!-- <br><br>
                 <label>No de Lista</label><br>
                 <input type="number" min="1" class="number" value="<?php echo $alumno['num_lista']?>" name="numlista"> -->

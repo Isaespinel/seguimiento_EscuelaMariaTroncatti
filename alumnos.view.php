@@ -7,7 +7,7 @@ permisos($permisos);
 
 
 //consulta de grados
-$grados = $conn->prepare("select * from grados");
+$grados = $conn->prepare("select * from grados where estado=1");
 $grados->execute();
 $grados = $grados->fetchAll();
 
@@ -43,6 +43,9 @@ $grados = $grados->fetchAll();
                 <br>
                 <label>Apellidos</label><br>
                 <input type="text" required name="apellidos" maxlength="45">
+
+                <label>Cedula</label><br>
+                <input type="text" required name="cedula" maxlength="10">
                 
                 <br><br>
                 <label>Sexo</label><br><input required type="radio" name="genero" value="M"> Masculino

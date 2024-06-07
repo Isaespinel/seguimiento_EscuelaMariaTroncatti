@@ -5,7 +5,7 @@ $permisos = ['Administrador', 'Profesor'];
 permisos($permisos);
 //consulta los materias
 //$materias = $conn->prepare("select * from materias inner join grados on materias.id_grado = grados.id");
-$materias = $conn->prepare("SELECT materias.Id, materias.Nombre, grados.nombre FROM materias INNER JOIN grados ON  materias.id_grado = grados.id order by materias.id desc");
+$materias = $conn->prepare("SELECT materias.Id, materias.Nombre, grados.nombre FROM materias INNER JOIN grados ON  materias.id_grado = grados.id where materias.estado=1 order by materias.id desc");
 $materias->execute();
 $materias = $materias->fetchAll();
 

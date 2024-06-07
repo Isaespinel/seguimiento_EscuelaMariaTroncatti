@@ -4,7 +4,7 @@ if($_SESSION['rol'] =='Administrador') {
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         try {
             $id_curso = $_GET['id'];
-            $curso = $conn->prepare("delete from grados where id = " . $id_curso);
+            $curso = $conn->prepare("update grados set estado=0 where id = " . $id_curso);
             $curso->execute();
             header('location:cursos.view.php');
         } catch (PDOException $e) {

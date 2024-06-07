@@ -19,23 +19,10 @@
                 </div>
 
                 <div class="container mt-4">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
-                            <div class="card" style="height: 150px;">
-                                <div class="row">
-                                    <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
-                                    <i><ion-icon name="home" style="color: #F5C313; font-size: 80px;"></ion-icon></i>
-                                    </div>
-                                    <div class="col-md-8" >
-                                        <h1 class="mt-5">Inicio</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
+                    
+                    <div class="row mt-4">
+                    <div class="col-md-6">
+                            <a href="listadoalumnos.view.php" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
                                 <div class="row">
                                     <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
@@ -48,10 +35,9 @@
                             </div>
                             </a>
                         </div>
-                    </div>
-                    <div class="row mt-4">
+
                         <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
+                            <a href="cursos.view.php" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
                                 <div class="row">
                                     <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
@@ -64,8 +50,12 @@
                             </div>
                             </a>
                         </div>
-                        <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
+                        
+                    </div>
+                    <div class="row mt-4">
+
+                    <div class="col-md-6">
+                            <a href="materias.view.php" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
                                 <div class="row">
                                     <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
@@ -78,10 +68,11 @@
                             </div>
                             </a>
                         </div>
-                    </div>
-                    <div class="row mt-4">
+                       
+                        
+
                         <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
+                            <a href="notas.view.php" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
                                 <div class="row">
                                     <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
@@ -94,6 +85,10 @@
                             </div>
                             </a>
                         </div>
+
+                    </div>
+                    <div class="row mt-4">
+                        
                         <div class="col-md-6">
                             <a href="#" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
@@ -108,8 +103,7 @@
                             </div>
                             </a>
                         </div>
-                    </div>
-                    <div class="row my-4">
+
                         <div class="col-md-6">
                             <a href="#" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
@@ -124,8 +118,10 @@
                             </div>
                             </a>
                         </div>
-                        
+
+
                     </div>
+                   
                 </div>
             </div>
 

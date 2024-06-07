@@ -13,7 +13,7 @@ else {
     //insertar es el nombre del boton guardar que esta en el archivo alumnos.view.php
     if (isset($_POST['insertar'])){
 
-        $result = $conn->query("insert into materias (nombre, id_grado) values ('$nombre_mat', '$curso_mat')");
+        $result = $conn->query("insert into materias (nombre, estado, id_grado) values ('$nombre_mat', 1, '$curso_mat')");
         if (isset($result)) {
             header('location:materias.view.php');
         } else {
@@ -24,7 +24,7 @@ else {
     }else if (isset($_POST['modificar'])) {
         
             $id_materia = htmlentities($_POST['id']);
-            $result = $conn->query("update materias set nombre = '$nombre_mat', id_grado = '$curso_mat' where id = " . $id_materia);
+            $result = $conn->query("update materias set nombre = '$nombre_mat', estado=1, id_grado = '$curso_mat' where id = " . $id_materia);
             if (isset($result)) {
                 header('location:materias.view.php');
             } else {
