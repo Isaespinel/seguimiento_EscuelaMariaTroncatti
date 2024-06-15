@@ -90,7 +90,7 @@
 
             <!-- Comportamiento -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="comportamiento.view.php">
                 <i><ion-icon name="checkmark-done" style="color: white; font-size: 18px;"></ion-icon></i>
                     <span style="font-size: 18px;">Comportamiento</span>
                 </a>

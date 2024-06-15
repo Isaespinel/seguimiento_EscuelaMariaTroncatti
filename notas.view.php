@@ -6,7 +6,7 @@ $permisos = ['Administrador', 'Profesor'];
 permisos($permisos);
 
 //consulta las materias
-$materias = $conn->prepare("select * from materias");
+$materias = $conn->prepare("select * from materias where estado=1");
 $materias->execute();
 $materias = $materias->fetchAll();
 
@@ -58,7 +58,7 @@ $grados = $grados->fetchAll();
                         if (!isset($_GET['revisar'])) {
                         ?>
 
-                            <div class="container">
+                            <div class="container" >
                                 <div class="row">
 
                                     <?php foreach ($grados as $grado) : ?>
@@ -100,6 +100,7 @@ $grados = $grados->fetchAll();
                         if (isset($_GET['revisar'])) {
                             //$id_materia = $_GET['materia'];
                             $id_grado = $_GET['grado'];
+                            
                             //$id_seccion = $_GET['seccion'];
 
 
@@ -117,6 +118,7 @@ $grados = $grados->fetchAll();
                             <br>
                             <br>
                             <form action="procesarnota.php" method="post">
+                                <div class="scroll-container" style="width: 100%; overflow-x: auto;">
 
                                 <table class="table" cellpadding="0" cellspacing="0">
                                     <tr>
@@ -238,6 +240,7 @@ $grados = $grados->fetchAll();
 
                                     <tr></tr>
                                 </table>
+                                </div>
                                 <br>
                                 <button class="btn btn-success" type="submit" name="insertar">Guardar</button>
                                 <br>
