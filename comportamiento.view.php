@@ -7,6 +7,9 @@ permisos($permisos);
 
 
 
+$username_main = getUserId($conn);
+
+
 //consulta las materias
 $materias = $conn->prepare("select * from materias where estado=1");
 $materias->execute();
@@ -14,7 +17,7 @@ $materias = $materias->fetchAll();
 
 
 //consulta de grados
-$grados = $conn->prepare("select * from grados where estado=1");
+$grados = $conn->prepare("select grados.id, grados.nombre from grados inner join permiso_usuarios on grados.id=permiso_usuarios.id_grado where permiso_usuarios.id_user='$username_main' and grados.estado=1");
 $grados->execute();
 $grados = $grados->fetchAll();
 
@@ -79,7 +82,7 @@ $grados = $grados->fetchAll();
             <?php
             }
             ?>
-            <hr>
+            
 
             <?php
             if (isset($_GET['revisar'])) {
@@ -118,9 +121,9 @@ $grados = $grados->fetchAll();
                         </tr>
                         <?php foreach ($datos as $dato) : ?>
                             <input type="hidden" value="<?php echo $dato['id_alumno'] ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][id]">
-                            <input type="hidden" value="<?php if($dato['Final_t1']!=''){echo $dato['Final_t1'];}else{echo '0';} ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][finalt1]">
-                            <input type="hidden" value="<?php if($dato['Final_t2']!=''){echo $dato['Final_t2'];}else{echo '0';} ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][finalt2]">
-                            <input type="hidden" value="<?php if($dato['Final_t3']!=''){echo $dato['Final_t3'];}else{echo '0';} ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][finalt3]">
+                            <input type="hidden" value="<?php if($dato['Final_t1']!='0'){echo $dato['Final_t1'];}else{echo '0';} ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][finalt1]">
+                            <input type="hidden" value="<?php if($dato['Final_t2']!='0'){echo $dato['Final_t2'];}else{echo '0';} ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][finalt2]">
+                            <input type="hidden" value="<?php if($dato['Final_t3']!='0'){echo $dato['Final_t3'];}else{echo '0';} ?>" name="alumnos[<?php echo $dato['id_alumno'] ?>][finalt3]">
                             <input type="hidden" value="<?php echo $id_grado ?>" name="id_grado">
                             <tr>
                                 <td align="center"><?php echo $dato['Nombres'] ?></td>
@@ -129,22 +132,22 @@ $grados = $grados->fetchAll();
                                     <select class="form-select" aria-label="Default select example" name="alumnos[<?php echo $dato['id_alumno'] ?>][parcial1t1]">
                                         <option <?php if (isset($dato['Parcial1_t1'])) {
                                                     echo 'selected';
-                                                } ?>>-</option>
-                                        <option <?php if (($dato['Parcial1_t1']) == 'A') {
+                                                } ?> value="0" >-</option>
+                                        <option <?php if (($dato['Parcial1_t1']) == '9') {
                                                     echo 'selected';
-                                                } ?> value="A">A</option>
-                                        <option <?php if (($dato['Parcial1_t1']) == 'B') {
+                                                } ?> value="9">A</option>
+                                        <option <?php if (($dato['Parcial1_t1']) == '8') {
                                                     echo 'selected';
-                                                } ?> value="B">B</option>
-                                        <option <?php if (($dato['Parcial1_t1']) == 'C') {
+                                                } ?> value="8">B</option>
+                                        <option <?php if (($dato['Parcial1_t1']) == '7') {
                                                     echo 'selected';
-                                                } ?> value="C">C</option>
-                                        <option <?php if (($dato['Parcial1_t1']) == 'D') {
+                                                } ?> value="7">C</option>
+                                        <option <?php if (($dato['Parcial1_t1']) == '6') {
                                                     echo 'selected';
-                                                } ?> value="D">D</option>
-                                        <option <?php if (($dato['Parcial1_t1']) == 'E') {
+                                                } ?> value="6">D</option>
+                                        <option <?php if (($dato['Parcial1_t1']) == '5') {
                                                     echo 'selected';
-                                                } ?> value="E">E</option>
+                                                } ?> value="5">E</option>
                                     </select>
                                 </td>
 
@@ -152,97 +155,125 @@ $grados = $grados->fetchAll();
                                     <select class="form-select" aria-label="Default select example" name="alumnos[<?php echo $dato['id_alumno'] ?>][parcial2t1]">
                                         <option <?php if (isset($dato['Parcial2_t1'])) {
                                                     echo 'selected';
-                                                } ?>>-</option>
-                                        <option <?php if (($dato['Parcial2_t1']) == 'A') {
+                                                } ?> value="0" >-</option>
+                                        <option <?php if (($dato['Parcial2_t1']) == '9') {
                                                     echo 'selected';
-                                                } ?> value="A">A</option>
-                                        <option <?php if (($dato['Parcial2_t1']) == 'B') {
+                                                } ?> value="9">A</option>
+                                        <option <?php if (($dato['Parcial2_t1']) == '8') {
                                                     echo 'selected';
-                                                } ?> value="B">B</option>
-                                        <option <?php if (($dato['Parcial2_t1']) == 'C') {
+                                                } ?> value="8">B</option>
+                                        <option <?php if (($dato['Parcial2_t1']) == '7') {
                                                     echo 'selected';
-                                                } ?> value="C">C</option>
-                                        <option <?php if (($dato['Parcial2_t1']) == 'D') {
+                                                } ?> value="7">C</option>
+                                        <option <?php if (($dato['Parcial2_t1']) == '6') {
                                                     echo 'selected';
-                                                } ?> value="D">D</option>
-                                        <option <?php if (($dato['Parcial2_t1']) == 'E') {
+                                                } ?> value="6">D</option>
+                                        <option <?php if (($dato['Parcial2_t1']) == '5') {
                                                     echo 'selected';
-                                                } ?> value="E">E</option>
+                                                } ?> value="5">E</option>
                                     </select>
                                 </td>
 
 
                                 <td class="text-center">
-                                    <?php echo $dato['Final_t1']?>
+                                    <?php if($dato['Final_t1'] == 9){
+                                       echo 'A';
+                                    }elseif($dato['Final_t1'] == 8){
+                                       echo 'B';
+                                    }elseif($dato['Final_t1'] == 7){
+                                        echo 'C';
+                                    }elseif($dato['Final_t1'] == 6){
+                                        echo 'D';
+                                    }elseif($dato['Final_t1'] == 5){
+                                        echo 'E';
+                                    }elseif($dato['Final_t1'] == 0){
+                                        echo '-';
+                                    }
+                                    ?>
                                 </td>
                                 <td>
                                     <select class="form-select" aria-label="Default select example" name="alumnos[<?php echo $dato['id_alumno'] ?>][parcial1t2]">
                                         <option <?php if (isset($dato['Parcial1_t2'])) {
                                                     echo 'selected';
-                                                } ?>>-</option>
-                                        <option <?php if (($dato['Parcial1_t2']) == 'A') {
+                                                } ?> value="0" >-</option>
+                                        <option <?php if (($dato['Parcial1_t2']) == '9') {
                                                     echo 'selected';
-                                                } ?> value="A">A</option>
-                                        <option <?php if (($dato['Parcial1_t2']) == 'B') {
+                                                } ?> value="9">A</option>
+                                        <option <?php if (($dato['Parcial1_t2']) == '8') {
                                                     echo 'selected';
-                                                } ?> value="B">B</option>
-                                        <option <?php if (($dato['Parcial1_t2']) == 'C') {
+                                                } ?> value="8">B</option>
+                                        <option <?php if (($dato['Parcial1_t2']) == '7') {
                                                     echo 'selected';
-                                                } ?> value="C">C</option>
-                                        <option <?php if (($dato['Parcial1_t2']) == 'D') {
+                                                } ?> value="7">C</option>
+                                        <option <?php if (($dato['Parcial1_t2']) == '6') {
                                                     echo 'selected';
-                                                } ?> value="D">D</option>
-                                        <option <?php if (($dato['Parcial1_t2']) == 'E') {
+                                                } ?> value="6">D</option>
+                                        <option <?php if (($dato['Parcial1_t2']) == '5') {
                                                     echo 'selected';
-                                                } ?> value="E">E</option>
+                                                } ?> value="5">E</option>
                                     </select>
                                 </td>
                                 <td>
                                     <select class="form-select" aria-label="Default select example" name="alumnos[<?php echo $dato['id_alumno'] ?>][parcial2t2]">
                                         <option <?php if (isset($dato['Parcial2_t2'])) {
                                                     echo 'selected';
-                                                } ?>>-</option>
-                                        <option <?php if (($dato['Parcial2_t2']) == 'A') {
+                                                } ?> value="0" >-</option>
+                                        <option <?php if (($dato['Parcial2_t2']) == '9') {
                                                     echo 'selected';
-                                                } ?> value="A">A</option>
-                                        <option <?php if (($dato['Parcial2_t2']) == 'B') {
+                                                } ?> value="9">A</option>
+                                        <option <?php if (($dato['Parcial2_t2']) == '8') {
                                                     echo 'selected';
-                                                } ?> value="B">B</option>
-                                        <option <?php if (($dato['Parcial2_t2']) == 'C') {
+                                                } ?> value="8">B</option>
+                                        <option <?php if (($dato['Parcial2_t2']) == '7') {
                                                     echo 'selected';
-                                                } ?> value="C">C</option>
-                                        <option <?php if (($dato['Parcial2_t2']) == 'D') {
+                                                } ?> value="7">C</option>
+                                        <option <?php if (($dato['Parcial2_t2']) == '6') {
                                                     echo 'selected';
-                                                } ?> value="D">D</option>
-                                        <option <?php if (($dato['Parcial2_t2']) == 'E') {
+                                                } ?> value="6">D</option>
+                                        <option <?php if (($dato['Parcial2_t2']) == '5') {
                                                     echo 'selected';
-                                                } ?> value="E">E</option>
+                                                } ?> value="5">E</option>
                                     </select>
                                 </td>
 
 
-                                <td class="text-center"><?php echo $dato['Final_t2'] ?></td>
+                                <td class="text-center">
+                                <?php if($dato['Final_t2'] == 9){
+                                       echo 'A';
+                                    }elseif($dato['Final_t2'] == 8){
+                                       echo 'B';
+                                    }elseif($dato['Final_t2'] == 7){
+                                        echo 'C';
+                                    }elseif($dato['Final_t2'] == 6){
+                                        echo 'D';
+                                    }elseif($dato['Final_t2'] == 5){
+                                        echo 'E';
+                                    }elseif($dato['Final_t2'] == 0){
+                                        echo '-';
+                                    }
+                                    ?>
+                                </td>
 
                                 <td>
                                     <select class="form-select" aria-label="Default select example" name="alumnos[<?php echo $dato['id_alumno'] ?>][parcial1t3]">
                                         <option <?php if (isset($dato['Parcial1_t3'])) {
                                                     echo 'selected';
-                                                } ?>>-</option>
-                                        <option <?php if (($dato['Parcial1_t3']) == 'A') {
+                                                } ?> value="0" >-</option>
+                                        <option <?php if (($dato['Parcial1_t3']) == '9') {
                                                     echo 'selected';
-                                                } ?> value="A">A</option>
-                                        <option <?php if (($dato['Parcial1_t3']) == 'B') {
+                                                } ?> value="9">A</option>
+                                        <option <?php if (($dato['Parcial1_t3']) == '8') {
                                                     echo 'selected';
-                                                } ?> value="B">B</option>
-                                        <option <?php if (($dato['Parcial1_t3']) == 'C') {
+                                                } ?> value="8">B</option>
+                                        <option <?php if (($dato['Parcial1_t3']) == '7') {
                                                     echo 'selected';
-                                                } ?> value="C">C</option>
-                                        <option <?php if (($dato['Parcial1_t3']) == 'D') {
+                                                } ?> value="7">C</option>
+                                        <option <?php if (($dato['Parcial1_t3']) == '6') {
                                                     echo 'selected';
-                                                } ?> value="D">D</option>
-                                        <option <?php if (($dato['Parcial1_t3']) == 'E') {
+                                                } ?> value="6">D</option>
+                                        <option <?php if (($dato['Parcial1_t3']) == '5') {
                                                     echo 'selected';
-                                                } ?> value="E">E</option>
+                                                } ?> value="5">E</option>
                                     </select>
                                 </td>
 
@@ -250,27 +281,40 @@ $grados = $grados->fetchAll();
                                     <select class="form-select" aria-label="Default select example" name="alumnos[<?php echo $dato['id_alumno'] ?>][parcial2t3]">
                                         <option <?php if (isset($dato['Parcial2_t3'])) {
                                                     echo 'selected';
-                                                } ?>>-</option>
-                                        <option <?php if (($dato['Parcial2_t3']) == 'A') {
+                                                } ?> value="0">-</option>
+                                        <option <?php if (($dato['Parcial2_t3']) == '9') {
                                                     echo 'selected';
-                                                } ?> value="A">A</option>
-                                        <option <?php if (($dato['Parcial2_t3']) == 'B') {
+                                                } ?> value="9">A</option>
+                                        <option <?php if (($dato['Parcial2_t3']) == '8') {
                                                     echo 'selected';
-                                                } ?> value="B">B</option>
-                                        <option <?php if (($dato['Parcial2_t3']) == 'C') {
+                                                } ?> value="8">B</option>
+                                        <option <?php if (($dato['Parcial2_t3']) == '7') {
                                                     echo 'selected';
-                                                } ?> value="C">C</option>
-                                        <option <?php if (($dato['Parcial2_t3']) == 'D') {
+                                                } ?> value="7">C</option>
+                                        <option <?php if (($dato['Parcial2_t3']) == '6') {
                                                     echo 'selected';
-                                                } ?> value="D">D</option>
-                                        <option <?php if (($dato['Parcial2_t3']) == 'E') {
+                                                } ?> value="6">D</option>
+                                        <option <?php if (($dato['Parcial2_t3']) == '5') {
                                                     echo 'selected';
-                                                } ?> value="E">E</option>
+                                                } ?> value="5">E</option>
                                     </select>
                                 </td>
 
 
-                                <td class="text-center"><?php echo $dato['Final_t3'] ?></td>
+                                <td class="text-center">
+                                <?php if($dato['Final_t3'] == 9){
+                                       echo 'A';
+                                    }elseif($dato['Final_t3'] == 8){
+                                       echo 'B';
+                                    }elseif($dato['Final_t3'] == 7){
+                                        echo 'C';
+                                    }elseif($dato['Final_t3'] == 6){
+                                        echo 'D';
+                                    }elseif($dato['Final_t3'] == 5){
+                                        echo 'E';
+                                    }
+                                    ?>
+                                </td>
 
                                 <td class="text-center"><?php echo $dato['Prom_final'] ?></td>
                             </tr>

@@ -23,46 +23,39 @@ $grados = $grados->fetchAll();
 
 </head>
 <body>
-    <?php include("./Cabecera.php"); ?><br>
-    
 
+<?php include("./Cabecera.php"); ?><br>
+   
 
 <div class="body">
     <div class="panel" style="border: none;">
-            <h4>Registro de Cursos</h4>
-            <form method="post" class="form" action="procesarcurso.php">
-                <label>Nombre del Curso</label><br>
-                <input type="text" required name="nombre_cur" maxlength="45">
+    <a href="materias.view.php"><ion-icon name="arrow-back-circle-outline" style="font-size: 35px;"></ion-icon></a>
+    <h4>Registro de Usuarios</h4>
+            <form method="post" class="form" action="procesarusuario.php">
+                <label>Nombre</label><br>
+                <input type="text" required placeholder="Juan Andres" name="nombre" maxlength="45">
                 <br>
-                
-                <label>Período</label><br>
-                <select name="periodo_cur" required>
-                    
-                    <option value="2023-2024">2023-2024</option>
-                    <option value="2024-2025">2024-2025</option>
-                    <option value="2025-2026">2025-2026</option>
-                    <option value="2026-2027">2026-2027</option>
-                    <option value="2027-2028">2027-2028</option>
-                    <option value="2028-2029">2028-2029</option>
-                    <option value="2029-2030">2029-2030</option>
-                    <option value="2030-2031">2030-2031</option>
-                    <option value="2031-2032">2031-2032</option>
-                    <option value="2032-2033">2032-2033</option>
-                    <option value="2033-2034">2033-2034</option>
-                    <option value="2034-2035">2034-2035</option>
-                   
+                <label>Nombre de usuario</label><br>
+                <input type="text" placeholder="juanandres10" required name="usuario" maxlength="45">
+                <br><br>
+                <label>Contraseña</label><br>
+                <input type="password" minlength="6" placeholder="Contraseña" required name="pass" maxlength="45">
+                <br><br>
+                <label>Rol</label><br>
+                <select name="rol" required>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Profesor">Profesor</option>
                 </select>
                 
-
                 <br><br>
-                <div class="text-right">
-                  <button class="btn btn-success" type="submit" name="insertar">Guardar</button> 
-                </div>
+
+                <button type="submit" class="btn btn-success" name="insertar">Guardar</button>
+                <br><br>
                 <!--mostrando los mensajes que recibe a traves de los parametros en la url-->
                 <?php
-                if(isset($_GET['err']))
+                if (isset($_GET['err']))
                     echo '<span class="error">Error al almacenar el registro</span>';
-                if(isset($_GET['info']))
+                if (isset($_GET['info']))
                     echo '<span class="success">Registro almacenado correctamente!</span>';
                 ?>
 

@@ -50,16 +50,14 @@
             <i class="fa-solid fa-user-check"></i> Comportamiento
           </a>
         </li>
+        
+        
         <li class="nav-item">
-          <a class="nav-link" href="asistencia.view.php">
+          <a class="nav-link" href="usuarios.view.php">
             <i class="fa-solid fa-circle-user"></i> Perfil
           </a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="listadonotas.view.php">
-            <i class="fa-solid fa-file-text"></i> Consulta de Notas
-          </a>
-        </li> -->
+        
         
         <li class="nav-item">
           <a class="nav-link" href="logout.php">

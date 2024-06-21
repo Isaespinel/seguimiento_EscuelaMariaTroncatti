@@ -96,13 +96,26 @@
                 </a>
             </li>
 
+
+            <!-- Regreso -->
+            <li class="nav-item">
+                <a class="nav-link" href="inicio.view.php">
+                <i><ion-icon name="arrow-undo" style="color: white; font-size: 18px;"></ion-icon></i>
+                    <span style="font-size: 18px;">Principal</span>
+                </a>
+            </li>
+
              <!-- Perfil -->
+             <?php 
+          if(getRol() == 'Administrador'){  
+        ?>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="usuarios.view.php">
                 <i><ion-icon name="person-circle" style="color: white; font-size: 18px;"></ion-icon></i>
                     <span style="font-size: 18px;">Perfil</span>
                 </a>
             </li>
+            <?php }?>
 
 
 

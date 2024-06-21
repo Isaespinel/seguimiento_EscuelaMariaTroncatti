@@ -19,6 +19,22 @@ function permisos($permisos){
     }
 }
 
+function getRol(){
+    $rolprincipal = $_SESSION['rol'];
+    return $rolprincipal;
+}
+
+function getUserId($conn) {
+    if (isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
+        $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+        $stmt->execute([$username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['id'] : null;
+    }
+    return null;
+}
+
 function existeNota($id_alumno, $id_materia, $conn){
     $nota = $conn->prepare("select * from notas where id_materia = '$id_materia' and id_alumno = '$id_alumno'");
     $nota->execute();
@@ -34,6 +50,15 @@ function existeComportamiento($id_alumno, $conn){
     //si devuelve una fila significa que la nota ya es
     $comportamiento = $comportamiento->rowCount();
     return $comportamiento;
+}
+
+
+function existeSeguimiento($id_alumno, $conn){
+    $seguimiento = $conn->prepare("select * from seguimiento where id_alumno = '$id_alumno'");
+    $seguimiento->execute();
+    //si devuelve una fila significa que la nota ya es
+    $seguimiento = $seguimiento->rowCount();
+    return $seguimiento;
 }
 
 ?>

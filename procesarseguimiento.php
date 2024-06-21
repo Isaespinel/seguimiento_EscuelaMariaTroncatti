@@ -57,29 +57,33 @@ else {
 
     $id_alumno = htmlentities($_POST ['id_alumno']);
 
+    $id_seguimiento = htmlentities($_POST ['id_seguimiento']);
 
-    //insertar es el nombre del boton guardar que esta en el archivo alumnos.view.php
-    if (isset($_POST['insertar'])){
 
-        $result = $conn->query("insert into seguimiento(fun_1, fun_2, resul_plan, nivel_plan, fun_3, fun_4, resul_meta, nivel_meta, global_fun, auto_fun, emoc_1, res_emoc_1, emoc_2, res_emoc_2, nivel_emoc_1, emoc_3, res_emoc_3, emoc_4, res_emoc_4, nivel_emoc_2, global_emoc, auto_emoc, aca_1, res_aca_1, aca_2, res_aca_2, nivel_aca, global_aca, auto_aca, cond_1, res_cond_1, cond_2, res_cond_2, global_cond, auto_cond, id_alumno) values ('$planeacion', '$seguimiento', '$resul_plan', '$nivel_plan', '$proyeccion_metas', '$seguimiento_metas', '$resul_meta', '$nivel_meta', '$global_fun', '$auto_fun', '$reconoce_emociones', '$resul_emoc1', '$tolerancia', '$resul_emoc2', '$nivel_emoc1', '$capacidad', '$resul_emoc3', '$soluciones', '$resul_emoc4', '$nivel_emoc2', '$global_emoc', '$auto_emoc', '$autoevaluacion', '$resul_aca1', '$diario', '$resul_aca2', '$nivel_aca', '$global_aca', '$auto_aca', '$conocimiento_valores', '$resul_cond1', '$tomar_decision', '$resul_cond2', '$global_cond', '$auto_cond', '$id_alumno')");
-        echo($result);
-        if (isset($result)) {
-            echo($result);
-            //header('location:seguimiento.view.php');
+   
+
+    if (existeSeguimiento($id_alumno, $conn) == 0) {
+        $sql_insert = " INSERT INTO seguimiento(fun_1, fun_2, resul_plan, nivel_plan, fun_3, fun_4, resul_meta, nivel_meta, global_fun, auto_fun, emoc_1, res_emoc_1, emoc_2, res_emoc_2, nivel_emoc_1, emoc_3, res_emoc_3, emoc_4, res_emoc_4, nivel_emoc_2, global_emoc, auto_emoc, aca_1, res_aca_1, aca_2, res_aca_2, nivel_aca, global_aca, auto_aca, cond_1, res_cond_1, cond_2, res_cond_2, global_cond, auto_cond, id_alumno) values ('$planeacion', '$seguimiento', '$resul_plan', '$nivel_plan', '$proyeccion_metas', '$seguimiento_metas', '$resul_meta', '$nivel_meta', '$global_fun', '$auto_fun', '$reconoce_emociones', '$resul_emoc1', '$tolerancia', '$resul_emoc2', '$nivel_emoc1', '$capacidad', '$resul_emoc3', '$soluciones', '$resul_emoc4', '$nivel_emoc2', '$global_emoc', '$auto_emoc', '$autoevaluacion', '$resul_aca1', '$diario', '$resul_aca2', '$nivel_aca', '$global_aca', '$auto_aca', '$conocimiento_valores', '$resul_cond1', '$tomar_decision', '$resul_cond2', '$global_cond', '$auto_cond', '$id_alumno')";
+        $result = $conn->query($sql_insert);
+    } elseif (existeSeguimiento($id_alumno, $conn) > 0) {
+        $sql_update = "UPDATE seguimiento SET fun_1 = '$planeacion', fun_2 = '$seguimiento', resul_plan = '$resul_plan', nivel_plan = '$nivel_plan', fun_3 = '$proyeccion_metas', fun_4 = '$seguimiento_metas', resul_meta = '$resul_meta', nivel_meta = '$nivel_meta', global_fun = '$global_fun', auto_fun = '$auto_fun', emoc_1 = '$reconoce_emociones', res_emoc_1 = '$resul_emoc1', emoc_2 = '$tolerancia', res_emoc_2 = '$resul_emoc2', nivel_emoc_1 = '$nivel_emoc1', emoc_3 = '$capacidad', res_emoc_3 = '$resul_emoc3', emoc_4 = '$soluciones', res_emoc_4 = '$resul_emoc4', nivel_emoc_2 = '$nivel_emoc2', global_emoc = '$global_emoc', auto_emoc = '$auto_emoc', aca_1 = '$autoevaluacion', res_aca_1 = '$resul_aca1', aca_2 = '$diario', res_aca_2 = '$resul_aca2', nivel_aca = '$nivel_aca', global_aca = '$global_aca', auto_aca = '$auto_aca', cond_1 = '$conocimiento_valores', res_cond_1 = '$resul_cond1', cond_2 = '$tomar_decision', res_cond_2 = '$resul_cond2', global_cond = '$global_cond', auto_cond = '$auto_cond' WHERE id = '$id_seguimiento'";
+        // Ejecutar la consulta SQL de UPDATE
+        if ($conn->query($sql_update) === TRUE) {
+            echo "Los datos se han actualizado correctamente.";
         } else {
-            header('location:materiasregister.view.php?err=1');
-        }// validación de registro
-
-    //sino boton modificar que esta en el archivo alumnoedit.view.php
-    }else if (isset($_POST['modificar'])) {
-            $id_materia = htmlentities($_POST['id']);
-            $result = $conn->query("update materias set nombre = '$nombre_mat', id_grado = '$curso_mat' where id = " . $id_materia);
-            if (isset($result)) {
-                header('location:materias.view.php');
-            } else {
-                header('location:materiasedit.view.php?id=' . $id_curso . '&err=1');
-            }
+            echo "Error al actualizar los datos: " . $conn->error;
+        }
     }
+
+    if (isset($result)) {
+        header('location:seguimiento_individual.php?alumno=' . $id_alumno);
+        
+    } else {
+        header('location:seguimiento_individual.php?alumno=' . $id_alumno);
+    }
+
+    
+
 
 }
 

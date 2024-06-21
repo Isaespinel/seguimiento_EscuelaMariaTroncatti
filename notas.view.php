@@ -5,6 +5,10 @@ require 'functions.php';
 $permisos = ['Administrador', 'Profesor'];
 permisos($permisos);
 
+
+
+$username_main = getUserId($conn);
+
 //consulta las materias
 $materias = $conn->prepare("select * from materias where estado=1");
 $materias->execute();
@@ -12,9 +16,10 @@ $materias = $materias->fetchAll();
 
 
 //consulta de grados
-$grados = $conn->prepare("select * from grados where estado=1");
+$grados = $conn->prepare("select grados.id, grados.nombre from grados inner join permiso_usuarios on grados.id=permiso_usuarios.id_grado where permiso_usuarios.id_user='$username_main' and grados.estado=1");
 $grados->execute();
 $grados = $grados->fetchAll();
+
 
 
 ?>
@@ -22,7 +27,7 @@ $grados = $grados->fetchAll();
 
 <head>
     <title>Notas | Registro de Notas</title>
-    <meta name="description" content="Registro de Notas del Centro Escolar Profesor Lennin" />
+    <meta name="description" content="Registro de Notas Maria Troncatti" />
     <link rel="stylesheet" href="css/style.css" />
 
 </head>

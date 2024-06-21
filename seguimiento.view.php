@@ -50,6 +50,14 @@ $grados = $grados->fetchAll();
                             </div>
                         </div>
 
+                        <!--mostrando los mensajes que recibe a traves de los parametros en la url-->
+                        <?php
+                        if (isset($_GET['err']))
+                            echo '<span class="error">Error al almacenar el registro</span>';
+                        if (isset($_GET['info']))
+                            echo '<span class="success">Registro almacenado correctamente!</span>';
+                        ?>
+
 
 
 
@@ -94,7 +102,7 @@ $grados = $grados->fetchAll();
 
 
                             //Funcion para que traiga los valores de los estudiantes y de las notas
-                            $consulta = $conn->prepare("SELECT alumnos.id as identificador, alumnos.nombres, alumnos.apellidos, grados.nombre as curso from alumnos inner join grados on grados.id=alumnos.id_grado WHERE id_grado = $id_grado order by apellidos");
+                            $consulta = $conn->prepare("SELECT alumnos.id as identificador, alumnos.nombres, alumnos.apellidos, grados.nombre as curso from alumnos inner join grados on grados.id=alumnos.id_grado WHERE alumnos.id_grado = $id_grado order by alumnos.apellidos");
                             $consulta->execute();
                             $datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
@@ -142,19 +150,10 @@ $grados = $grados->fetchAll();
                         <?php }
 
                         ?>
-                        <!--mostrando los mensajes que recibe a traves de los parametros en la url-->
-                        <?php
-                        if (isset($_GET['err']))
-                            echo '<span class="error">Error al almacenar el registro</span>';
-                        if (isset($_GET['info']))
-                            echo '<span class="success">Registro almacenado correctamente!</span>';
-                        ?>
+                        
 
                         </form>
-                        <?php
-                        if (isset($_GET['err']))
-                            echo '<span class="error">Error al guardar</span>';
-                        ?>
+                       
 
 
 

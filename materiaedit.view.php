@@ -14,7 +14,7 @@ if(isset($_GET['id'])) {
 
 
 //consulta de grados
-    $grados = $conn->prepare("select * from grados");
+    $grados = $conn->prepare("select * from grados where estado=1");
     $grados->execute();
     $grados = $grados->fetchAll();
 
@@ -25,13 +25,13 @@ if(isset($_GET['id'])) {
 <html>
 <head>
 <title>Inicio | Edicion de Materias</title>
-    <meta name="description" content="Registro de Notas del Centro Escolar Profesor Lennin" />
+    <meta name="description" content="Registro de Notas del Centro Escolar" />
     <link rel="stylesheet" href="css/style.css" />
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <meta name="description" content="Registro de Notas del Centro Escolar Profesor Lennin" />
+    <meta name="description" content="Registro de Notas del Centro Escolar" />
     
 
 </head>

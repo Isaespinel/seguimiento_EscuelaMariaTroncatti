@@ -1,5 +1,9 @@
 
-<?php include("Cabecera.php");?>
+<?php 
+require 'functions.php';
+include("Cabecera.php");
+?>
+
         
 
         <!-- Content Wrapper -->
@@ -90,7 +94,7 @@
                     <div class="row mt-4">
                         
                         <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
+                            <a href="comportamiento.view.php" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
                                 <div class="row">
                                     <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
@@ -103,9 +107,11 @@
                             </div>
                             </a>
                         </div>
-
+                        <?php 
+          if(getRol() == 'Administrador'){  
+        ?>
                         <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
+                            <a href="usuarios.view.php" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
                                 <div class="row">
                                     <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
@@ -118,6 +124,8 @@
                             </div>
                             </a>
                         </div>
+
+                        <?php }?>
 
 
                     </div>
