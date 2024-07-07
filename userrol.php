@@ -14,7 +14,7 @@ if(isset($_GET['id'])) {
 
 
     //consulta de grados
-    $grados = $conn->prepare("SELECT * FROM grados");
+    $grados = $conn->prepare("SELECT * FROM grados WHERE estado=1");
     $grados->execute();
     $grados = $grados->fetchAll();
 

@@ -21,7 +21,7 @@
                 <div class="container mt-4">
                     <div class="row">
                         <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
+                            <a href="panel_seguimiento.php" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
                                 <div class="row">
                                     <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
@@ -35,39 +35,7 @@
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
-                            <div class="card" style="height: 150px;">
-                                <div class="row">
-                                    <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
-                                    <i><ion-icon name="school" style="color: #414141; font-size: 80px;"></ion-icon></i>
-                                    </div>
-                                    <div class="col-md-8" >
-                                        <h1 class="mt-5">Alumnos</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div>
-                    </div>
-
-
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
-                            <div class="card" style="height: 150px;">
-                                <div class="row">
-                                    <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
-                                    <i><ion-icon name="easel" style="color: #414141; font-size: 80px;"></ion-icon></i>
-                                    </div>
-                                    <div class="col-md-8" >
-                                        <h1 class="mt-5">Cursos</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="#" style="text-decoration: none; color:black;">
+                            <a href="seguimiento.view.php" style="text-decoration: none; color:black;">
                             <div class="card" style="height: 150px;">
                                 <div class="row">
                                     <div class="col-md-4" style="display: grid; place-items:center; height: 150px;">
@@ -81,6 +49,9 @@
                             </a>
                         </div>
                     </div>
+
+
+                  
                    
                     
                 </div>

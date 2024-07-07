@@ -5,14 +5,10 @@ require 'functions.php';
 $permisos = ['Administrador', 'Profesor'];
 permisos($permisos);
 
-//consulta las materias
-$materias = $conn->prepare("select * from materias");
-$materias->execute();
-$materias = $materias->fetchAll();
 
 
 //consulta de grados
-$grados = $conn->prepare("select * from grados");
+$grados = $conn->prepare("select * from grados where estado=1");
 $grados->execute();
 $grados = $grados->fetchAll();
 

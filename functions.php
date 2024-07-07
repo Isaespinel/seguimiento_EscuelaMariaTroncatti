@@ -59,6 +59,7 @@ function existeSeguimiento($id_alumno, $conn){
     //si devuelve una fila significa que la nota ya es
     $seguimiento = $seguimiento->rowCount();
     return $seguimiento;
+    
 }
 
 ?>

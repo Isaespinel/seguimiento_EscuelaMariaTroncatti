@@ -4,6 +4,7 @@ require 'functions.php';
 $permisos = ['Administrador', 'Profesor'];
 permisos($permisos);
 //consulta los alumnos para el listaddo de alumnos
+
 $alumnos = $conn->prepare("select a.id, a.num_lista, a.nombres, a.apellidos, a.num_cedula, a.genero, b.nombre as grado from alumnos as a inner join grados as b on a.id_grado = b.id where a.estado=1 order by a.apellidos");
 $alumnos->execute();
 $alumnos = $alumnos->fetchAll();

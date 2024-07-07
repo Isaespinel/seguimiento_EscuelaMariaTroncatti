@@ -5,6 +5,8 @@ $permisos = ['Administrador','Profesor'];
 permisos($permisos);
 if(isset($_GET['id'])) {
 
+    
+
     $id_alumno = $_GET['id'];
 
     $alumno = $conn->prepare("select * from alumnos where id = ".$id_alumno);
@@ -13,7 +15,7 @@ if(isset($_GET['id'])) {
 
 
 
-//consulta de grados
+
     $grados = $conn->prepare("select * from grados where estado=1");
     $grados->execute();
     $grados = $grados->fetchAll();

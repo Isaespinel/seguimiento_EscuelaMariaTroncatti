@@ -52,6 +52,10 @@
                     <span style="font-size: 18px;">Inicio</span>
                 </a>
             </li>
+
+            <?php 
+          if(getRol() == 'Administrador'){  
+        ?>
             <!-- Alumnos -->
             <li class="nav-item">
                 <a class="nav-link" href="listadoalumnos.view.php">
@@ -80,6 +84,8 @@
                 </a>
             </li>
 
+            <?php }?>
+
             <!-- Calificaciones -->
             <li class="nav-item">
                 <a class="nav-link" href="notas.view.php">
@@ -93,6 +99,15 @@
                 <a class="nav-link" href="comportamiento.view.php">
                 <i><ion-icon name="checkmark-done" style="color: white; font-size: 18px;"></ion-icon></i>
                     <span style="font-size: 18px;">Comportamiento</span>
+                </a>
+            </li>
+
+
+            <!-- Reporte -->
+            <li class="nav-item">
+                <a class="nav-link" href="reporte.view.php">
+                <i><ion-icon name="print" style="color: white; font-size: 18px;"></ion-icon></i>
+                    <span style="font-size: 18px;">Reporte</span>
                 </a>
             </li>
 
