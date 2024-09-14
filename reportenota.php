@@ -204,7 +204,7 @@ if (!empty($alumnos) && !empty($materias)) {
             
             </tr>
             <tr>
-            <th border="1" colspan="2" style="border:none; background-color: rgb(152, 255, 104);">Seguimiento</th>
+            <th border="1" colspan="2" style="border:none; background-color: rgb(152, 255, 104);">Acompañamiento Pedagógico</th>
             <th style="text-align:center; border: 0.5px dotted black;">' . $seguimiento['final_autonomia'] . '</th>
             </tr>';
 
