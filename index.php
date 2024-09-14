@@ -66,26 +66,11 @@ if (isset($_GET['err']) && is_numeric($_GET['err']) && $_GET['err'] > 0 && $_GET
 </head>
 
 <body>
-  <!--  <div id="login-bg">
-    <div class="login">
-      <h1>Inicio de Sesión</h1>
-      <form method="post" action="login_post.php">
-        <div class="form-group">
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre de Usuario" name="username">
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" name="password">
-        </div>
-        <button type="submit" class="btn">Ingresar</button>
-      </form>
-    </div>
-  </div> -->
-
+  
 
   <div class="container-fluid principal">
     <div class="row">
       <div class="col-lg-6 form">
-
         <div class="card">
           <div class="text-center content">
             <img src="Img/main-logo.png" width="40%">
@@ -93,36 +78,16 @@ if (isset($_GET['err']) && is_numeric($_GET['err']) && $_GET['err'] > 0 && $_GET
             <h1>Iniciar Sesion</h1>
             <br>
             <p>Ingresa tu informacion para acceder al panel</p>
-
-            <form method="post" action="login_post.php">
-           
+            <form method="post" action="login_post.php"> 
             <input type="text" class="form-control" name="username" placeholder="Correo Electronico" aria-label="Correo Electronico" >
             <input type="password" class="form-control" name="password" placeholder="Contraseña" aria-label="Contraseña" >
-
             <p>Olvidaste tu contraseña? <a href="#">Click Aqui</a></p>
-           
-    
-
-          
-            
             <button type="submit" class="btn btn-warning">Ingresar</button>
-
             </form>
-
-
-
-            
-           
           </div>
-
-
-
         </div>
-
       </div>
       <div class="col-lg-6 image">
-
-
       </div>
     </div>
   </div>

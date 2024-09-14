@@ -59,9 +59,7 @@ $grados = $grados->fetchAll();
 
                             <div class="container" >
                                 <div class="row">
-
                                     <?php foreach ($grados as $grado) : ?>
-
                                         <div class="col-md-4 mt-4">
                                             <a href="reportenota.php?id=<?php echo $grado['id'] ?>" style="text-decoration: none; color:black;">
                                                 <div class="card" style="display:grid; place-items:center;">
@@ -70,9 +68,7 @@ $grados = $grados->fetchAll();
                                                 </div>
                                             </a>
                                         </div>
-
                                     <?php endforeach; ?>
-
                                 </div>
                             </div>
 
