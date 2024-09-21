@@ -10,8 +10,6 @@ if (!$_POST) {
     $id_grado = htmlentities($_POST['id_grado']);
 
 
-   
-
 
     if (isset($_POST['insertar'])) {
         foreach ($_POST['alumnos'] as $alumno_id => $alumno) {
@@ -68,11 +66,12 @@ if (!$_POST) {
                 $finalt3 = 0;
             }
 
-            $finalcompt1 = htmlentities($alumno['finalt1'] ?? '0');
-            $finalcompt2 = htmlentities($alumno['finalt2'] ?? '0');
-            $finalcompt3 = htmlentities($alumno['finalt3'] ?? '0');
+            $finalcompt1 = floatval(htmlentities($alumno['finalt1'] ?? 0));
+            $finalcompt2 = floatval(htmlentities($alumno['finalt2'] ?? 0));
+            $finalcompt3 = floatval(htmlentities($alumno['finalt3'] ?? 0));
+            
+            $comportamientofinal = (($finalcompt1 + $finalcompt2 + $finalcompt3) / 3);
 
-            $comportamientofinal = (($finalcompt1+$finalcompt2+$finalcompt3)/3);
             if($comportamientofinal > 8 && $comportamientofinal <= 9){
                 $prom_final = 9;
             }elseif($comportamientofinal > 7 && $comportamientofinal <= 8){
@@ -87,8 +86,6 @@ if (!$_POST) {
                 $prom_final = 0;
             }
             
-
-        
 
             if (existeComportamiento($alumno_id, $conn) == 0) {
                 $sql_insert = "INSERT INTO comportamiento (parcial1_t1, parcial2_t1, final_t1, parcial1_t2, parcial2_t2, final_t2, parcial1_t3, parcial2_t3, final_t3, prom_final, id_alumno) VALUES ('$parcial1t1', '$parcial2t1', '$finalt1', '$parcial1t2', '$parcial2t2', '$finalt2', '$parcial1t3', '$parcial2t3', '$finalt3', '$prom_final', '$alumno_id')";

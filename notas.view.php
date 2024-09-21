@@ -129,6 +129,7 @@ $grados = $grados->fetchAll();
                                     <tr>
                                         <th>Nombres</th>
                                         <th>Apellidos</th>
+                                        <th>Materia</th>
                                         
                                         <th>Parcial 1 T1</th>
                                         <th>Parcial 2 T1</th>
@@ -151,7 +152,7 @@ $grados = $grados->fetchAll();
 
                                        
                                         <th>Promedio Total</th>
-                                        <th>Materia</th>
+                                        
                                        
                                     </tr>
 
@@ -162,6 +163,7 @@ $grados = $grados->fetchAll();
                                         <tr>
                                             <td align="center"><?php echo $dato['Nombres'] ?></td>
                                             <td><?php echo $dato['Apellidos'] ?></td>
+                                            <td><?php echo $dato['nombre_materia'] ?></td>
                                             <td><input type="text" maxlength="4" value="<?php if (isset($dato['Parcial1_t1'])) {
                                                                                             echo $dato['Parcial1_t1'];
                                                                                         } else {
@@ -234,7 +236,7 @@ $grados = $grados->fetchAll();
 
 
                                             <td><?php echo $dato['Promedio_total'] ?></td>
-                                            <td><?php echo $dato['nombre_materia'] ?></td>
+                                            
                                             
                                         </tr>
                                     <?php endforeach; ?>

@@ -54,9 +54,6 @@ $grados = $grados->fetchAll();
                                 <h1 class="ml-2">Selecciona un curso para generar un reporte</h1>
                             </div>
                         </div>
-
-
-
                             <div class="container" >
                                 <div class="row">
                                     <?php foreach ($grados as $grado) : ?>
